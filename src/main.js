@@ -7,6 +7,7 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import colors from 'vuetify/es5/util/colors'
 import DateFilter from './filters/date'
+import AlertCmp from './components/Shared/Alert.vue'
 
 Vue.use(Vuetify, { theme: {
   primary: colors.blueGrey.base,
@@ -19,6 +20,7 @@ Vue.use(Vuetify, { theme: {
 }})
 
 Vue.filter('date', DateFilter)
+Vue.component('app-alert', AlertCmp)
 
 Vue.config.productionTip = false
 

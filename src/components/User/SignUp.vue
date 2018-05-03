@@ -1,5 +1,10 @@
 <template>
 <v-container>
+  <v-layout row wrap v-if="error">
+    <v-flex xs12 sm6 offset-sm3 class="mb-3">
+       <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
+    </v-flex>
+  </v-layout>
   <v-layout row wrap>
     <v-flex xs12 sm6 offset-sm3>
       <v-card>
@@ -44,7 +49,12 @@
               </v-layout>
               <v-layout row wrap>
                 <v-flex xs12>
-                  <v-btn color="primary" type="submit">Sign Up</v-btn>
+                  <v-btn color="primary" type="submit" :disabled="loading" :loading="loading">
+                    Sign Up
+                    <span slot="loader" class="custom-loader">
+                      <v-icon light>cached</v-icon>
+                      </span>
+                  </v-btn>
                 </v-flex>
               </v-layout>
             </v-form>
@@ -71,6 +81,12 @@ export default {
     },
     user () {
       return this.$store.getters.user
+      },
+      error () {
+        return this.$store.getters.error
+      },
+      loading () {
+        return this.$store.getters.loading
       }
     },
     watch: {
@@ -83,7 +99,49 @@ export default {
   methods: {
     onSignup () {
       this.$store.dispatch('SignUserUp', {email: this.email, password: this.password})
+    },
+    onDismissed(){
+      this.$store.dispatch('clearError')
     }
   }
 }
 </script>
+
+<style>
+  .custom-loader {
+    animation: loader 1s infinite;
+    display: flex;
+  }
+  @-moz-keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @-o-keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
