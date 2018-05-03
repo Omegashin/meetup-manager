@@ -7,7 +7,7 @@
   </v-layout>
   <v-layout row wrap>
     <v-flex xs12>
-      <v-form v-model="formIsValid" @submit.prevent="onCreateMeetup">
+      <form @submit.prevent="onCreateMeetup">
         <v-layout row wrap>
           <v-flex xs12 sm6 offset-sm3>
             <v-text-field
@@ -81,7 +81,7 @@
             type="submit">Create Meetup</v-btn>
           </v-flex>
         </v-layout>
-      </v-form>
+      </form>
     </v-flex>
   </v-layout>
 </v-container>
@@ -108,8 +108,8 @@ export default {
     },
     submittableDateTime () {
       const date = new Date(this.date)
-      if(typeof this.time == 'string') {
-        const hours = this.time.match(/^(\d+)/)[1]
+      if(typeof this.time === 'string') {
+        let hours = this.time.match(/^(\d+)/)[1]
         const minutes = this.time.match(/:(\d+)/)[1]
         date.setHours(hours)
         date.setMinutes(minutes)
@@ -133,7 +133,7 @@ export default {
         date: this.submittableDateTime
       }
       this.$store.dispatch('createMeetup', meetupData)
-      this.$router.push("/meetups")
+      this.$router.push('/meetups')
     }
   }
 }
