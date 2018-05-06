@@ -7,7 +7,7 @@
     max-width="60%"
     transition="dialog-transition"
     >
-    <v-btn accent fab slot="activator">
+    <v-btn accent class="primary" fab slot="activator">
         <v-icon>edit</v-icon>
     </v-btn>
     <v-card>
@@ -72,6 +72,11 @@ export default {
               return
           }
           this.editDialog = false
+          this.$store.dispatch('updateMeetupData', {
+            id: this.meetup.id,
+            title: this.editedTitle,
+            description: this.editedDescription
+          })
       }
   }
 }
