@@ -32,7 +32,7 @@
               </v-card-text>
               <v-card-actions>
                   <v-spacer></v-spacer>
-                <v-btn color="primary">Register</v-btn>
+                <app-meetup-register-dialog :meetupId ="meetup.id"></app-meetup-register-dialog>
               </v-card-actions>
       </v-card>
     </v-flex>
@@ -42,20 +42,20 @@
 
 <script>
 export default {
-    props: ['id'],
+  props: ['id'],
   computed: {
-      meetup () {
-          return this.$store.getters.loadedMeetup(this.id)
-      },
-      userIsAuthenticated() {
-        return this.$store.getters.user !==null && this.$store.getters.user !==undefined
-      },
-      userIsCreator() {
-        if(!this.userIsAuthenticated) {
-          return false
-        }
-        return this.$store.getters.user.id === this.meetup.creatorId
-      },
+    meetup () {
+      return this.$store.getters.loadedMeetup(this.id)
+    },
+    userIsAuthenticated () {
+      return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+    },
+    userIsCreator () {
+      if (!this.userIsAuthenticated) {
+        return false
+      }
+      return this.$store.getters.user.id === this.meetup.creatorId
+    },
     loading () {
       return this.$store.getters.loading
     }
