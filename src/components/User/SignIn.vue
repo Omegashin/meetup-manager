@@ -65,17 +65,17 @@ export default {
   computed: {
     user () {
       return this.$store.getters.user
-      },
-      error () {
-        return this.$store.getters.error
-      },
-      loading () {
-        return this.$store.getters.loading
-      }
     },
-    watch: {
-      user (value) {
-        if (value !== null && value !== undefined) {
+    error () {
+      return this.$store.getters.error
+    },
+    loading () {
+      return this.$store.getters.loading
+    }
+  },
+  watch: {
+    user (value) {
+      if (value !== null && value !== undefined) {
         this.$router.push('/')
       }
     }
@@ -84,7 +84,7 @@ export default {
     onSignin () {
       this.$store.dispatch('SignUserIn', {email: this.email, password: this.password})
     },
-    onDismissed(){
+    onDismissed () {
       this.$store.dispatch('clearError')
     }
   }

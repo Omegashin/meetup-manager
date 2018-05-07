@@ -46,17 +46,17 @@
 
 <script>
 export default {
-  computed:{
-    meetups (){
+  computed: {
+    meetups () {
       return this.$store.getters.featuredMeetups
     },
     loading () {
       return this.$store.getters.loading
     }
   },
-  methods:{
-    onLoadMeetup(id){
-      this.$router.push('/meetups/'+id)
+  methods: {
+    onLoadMeetup (id) {
+      this.$router.push('/meetups/' + id)
     }
   }
 }

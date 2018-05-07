@@ -89,7 +89,7 @@
 
 <script>
 export default {
-  data (){
+  data () {
     return {
       title: '',
       location: '',
@@ -104,30 +104,30 @@ export default {
     formIsValid () {
       return this.title !== '' &&
       this.location !== '' &&
-      this.imageUrl !== ''
-      && this.description !== ''
+      this.imageUrl !== '' &&
+      this.description !== ''
     },
     submittableDateTime () {
       const date = new Date(this.date)
-      if(typeof this.time === 'string') {
+      if (typeof this.time === 'string') {
         let hours = this.time.match(/^(\d+)/)[1]
         const minutes = this.time.match(/:(\d+)/)[1]
         date.setHours(hours)
         date.setMinutes(minutes)
-      } else{
-      date.setHours(this.time.getHours())
-      date.setMinutes(this.time.getMinutes())
+      } else {
+        date.setHours(this.time.getHours())
+        date.setMinutes(this.time.getMinutes())
       }
       return date
     }
   },
   methods: {
     onCreateMeetup () {
-      if(!this.formIsValid) {
+      if (!this.formIsValid) {
         return
       }
       if (!this.image) {
-        null
+        return
       }
       const meetupData = {
         title: this.title,
@@ -139,10 +139,10 @@ export default {
       this.$store.dispatch('createMeetup', meetupData)
       this.$router.push('/meetups')
     },
-    onPickFile() {
+    onPickFile () {
       this.$refs.fileInput.click()
     },
-    onFilePicked(event) {
+    onFilePicked (event) {
       const files = event.target.files
       let filename = files[0].name
       if (filename.lastIndexOf('.') <= 0) {

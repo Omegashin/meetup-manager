@@ -77,21 +77,21 @@ export default {
   },
   computed: {
     comparePasswords () {
-    return this.password !== this.confirmPassword ? 'Passwords are not equal' : true
+      return this.password !== this.confirmPassword ? 'Passwords are not equal' : true
     },
     user () {
       return this.$store.getters.user
-      },
-      error () {
-        return this.$store.getters.error
-      },
-      loading () {
-        return this.$store.getters.loading
-      }
     },
-    watch: {
-      user (value) {
-        if (value !== null && value !== undefined) {
+    error () {
+      return this.$store.getters.error
+    },
+    loading () {
+      return this.$store.getters.loading
+    }
+  },
+  watch: {
+    user (value) {
+      if (value !== null && value !== undefined) {
         this.$router.push('/')
       }
     }
@@ -100,7 +100,7 @@ export default {
     onSignup () {
       this.$store.dispatch('SignUserUp', {email: this.email, password: this.password})
     },
-    onDismissed(){
+    onDismissed () {
       this.$store.dispatch('clearError')
     }
   }

@@ -49,7 +49,7 @@
 
 <script>
   export default {
-    data() {
+    data () {
       return {
         drawer: false
       }
@@ -84,16 +84,16 @@
             title: 'Profile',
             link: '/profile'
           }
-        ]
+          ]
         }
         return menuItems
       },
-      userIsAuthenticated() {
+      userIsAuthenticated () {
         return this.$store.getters.user !== null && this.$store.getters.user !== undefined
       }
     },
     methods: {
-      onLogout() {
+      onLogout () {
         this.$store.dispatch('logout')
       }
     },

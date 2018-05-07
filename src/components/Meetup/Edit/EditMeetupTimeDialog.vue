@@ -53,10 +53,10 @@
       }
     },
     created () {
-    let date = new Date(this.meetup.date);
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    this.editableTime = hours + ":" + minutes;
+      let date = new Date(this.meetup.date)
+      let hours = date.getHours()
+      let minutes = date.getMinutes()
+      this.editableTime = hours + ':' + minutes
     }
   }
 </script>
